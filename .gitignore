@@ -1,0 +1,5 @@
+.DS_Store
+*.aux
+*.log
+squarefree_variance_4_7.out
+__pycache__/

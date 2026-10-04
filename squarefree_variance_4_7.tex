@@ -1,0 +1,497 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{theoremGMRR}{Theorem A (Gorodetsky--Matom\"aki--Radziwi\l{}\l{}--Rodgers)}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dd}{\,\mathrm{d}}
+
+\title[Squarefree variance up to $X^{4/7}$]{The variance of squarefree integers in short intervals of length up to \texorpdfstring{$X^{4/7}$}{X\textasciicircum(4/7)}}
+\date{October 2026. Draft, not refereed.}
+
+\begin{document}
+
+\begin{abstract}
+Gorodetsky, Matom\"aki, Radziwi\l{}\l{} and Rodgers proved that the number of
+squarefree integers in $(x,x+H]$, for $x$ chosen at random in $[X,2X]$, has
+variance asymptotic to $C\sqrt H$ when $H\le X^{6/11-\eps}$.  We extend the
+range to $H\le X^{4/7-\eps}$.  Only one step of their argument changes: in the
+contribution of integers with a large square divisor, the large value estimate
+of Guth and Maynard replaces Huxley's.  At $H=X^{4/7}$ several independent
+constraints of the argument become sharp at once, and we show that, within this
+method and with the large value and moment estimates we tried, $4/7$ cannot be
+passed unless the range of the estimate for small square divisors is enlarged.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Let $\mu$ be the M\"obius function, so that $\mu^2$ is the indicator function of
+the squarefree integers.  For $X\ge 2$ and $1\le H\le X$ put
+\[
+  \mathcal V(X,H):=\frac1X\int_X^{2X}\Bigl|\sum_{x<n\le x+H}\mu^2(n)-\frac{6}{\pi^2}H\Bigr|^2\dd x .
+\]
+The variance $\mathcal V(X,H)$ is of order $\sqrt H$, much smaller than the
+order $H$ that a random model with independent integers would give: the
+condition $p^2\nmid n$ correlates the squarefree integers in an interval.  Hall
+\cite{Ha} proved the asymptotic below for $H\le X^{2/9-\eps}$; see also
+\cite{GMaR} for the higher moments.  Let
+\[
+  C:=\frac{\zeta(3/2)}{\pi}\prod_p\Bigl(1-\frac{3}{p^2}+\frac{2}{p^3}\Bigr).
+\]
+
+\begin{theoremGMRR}[{\cite[Theorem~1]{GMRR}}]
+Let $\eps\in(0,\frac1{100})$, $X\ge 2$ and $H\le X^{6/11-\eps}$.  Then
+$\mathcal V(X,H)=C\sqrt H+O_\eps(H^{1/2-\eps/16})$.
+\end{theoremGMRR}
+
+Under the Lindel\"of hypothesis the same authors reach $H\le X^{2/3-\eps}$, and
+they show that the Riemann hypothesis is equivalent to the bound
+$\mathcal V(X,H)\ll H^{1/2+\eps}$ throughout $H\le X^{1-\eps}$
+\cite[Theorems~1 and~3]{GMRR}.  Our result is the following.
+
+\begin{theorem}\label{thm:main}
+Let $\eps\in(0,\frac1{100})$, $X\ge 2$ and $H\le X^{4/7-\eps}$.  Then
+\[
+  \mathcal V(X,H)=C\sqrt H+O_\eps\bigl(H^{1/2-\eps/64}\bigr).
+\]
+\end{theorem}
+
+Since $6/11=0.5454\ldots$ and $4/7=0.5714\ldots$, Theorem~\ref{thm:main}
+enlarges the unconditional range by the factor $X^{2/77}$.
+
+\subsection*{Where the exponent comes from}
+The argument of \cite{GMRR} writes $\mu^2(n)=\sum_{d^2\mid n}\mu(d)$ and splits
+at a parameter $z$.  The square divisors $d^2\le z$ produce the main term
+$C\sqrt H$; this part is proved for
+$z\le\min\{X/H^{1/2+\eps},H^{1/2-\eps}X^{1/2}\}$ (Proposition~\ref{prop:small}
+below).  The square divisors $d^2>z$ contribute only to the error term, and
+this is proved for $z\ge H^{4/3+\eps}$ (Proposition~\ref{prop:largeGMRR}).  The
+two ranges overlap exactly when $H^{4/3}\le X/H^{1/2}$, that is, when
+$H\le X^{6/11}$.
+
+The exponent $4/3$ comes from Dirichlet polynomials
+$M(1+2it)=\sum_{d\sim D}\mu(d)d^{-1-2it}$ at heights $T\approx X/H$.  The
+critical level set is $|M(1+2it)|\approx D^{-1/4}$: in the normalisation of
+Guth and Maynard this is a polynomial of length $N=D$ taking values of size
+$N^{3/4}$.  This is precisely the regime in which their large value estimate
+\cite[Theorem~1.1]{GM} improves on the Montgomery--Hal\'asz--Huxley bound.
+Gorodetsky, Matom\"aki, Radziwi\l{}\l{} and Rodgers point out
+\cite[end of Section~2]{GMRR} that, at $H=X^{6/11}$, the only case of the
+Heath-Brown decomposition of $\mu(d)$ they could not handle is the one in which
+$\mu(d)$ is replaced by two smooth sums of equal length; this is the same
+configuration.  Inserting \cite[Theorem~1.1]{GM} lowers $4/3$ to $5/4$
+(Proposition~\ref{prop:large}), and $H^{5/4}\le X/H^{1/2}$ gives $H\le X^{4/7}$.
+
+\subsection*{Why $4/7$}
+At $H=X^{4/7}$, with $z=X/H^{1/2}$ and $T=X/H$, the polynomial length is
+$D=\sqrt z=T^{5/6}$, and several constraints become sharp at once
+(Section~\ref{sec:limits}): the upper end $X/H^{1/2}$ of the range of
+Proposition~\ref{prop:small}; the Weyl bound in the large-$d$ estimate (the source of
+the restriction $H\le X^{4/7}$ already present in
+Proposition~\ref{prop:largeGMRR}); and both power-saving terms of
+\cite[Theorem~1.1]{GM}.  The Weyl bound can be replaced by Bourgain's, and for
+$D\ge T^{5/6}$ the Guth--Maynard estimate for long polynomials
+\cite[Proposition~12.1]{GM} replaces Theorem~1.1 there; but that replacement is
+blocked at the same point: at the level $\sigma=3/4$ no large value estimate we
+know gives fewer than $T^{1/2}$ points, and for $T^{1/2}$ unit intervals the
+fourth and twelfth moments of $\zeta$ give the same bound.  Thus, within this
+method (which treats $M$ as a polynomial with generic bounded coefficients), any
+further progress requires enlarging the range of Proposition~\ref{prop:small},
+the part of the argument that produces the main term.
+
+\subsection*{Arithmetic progressions}
+\cite[Theorem~2]{GMRR} is the analogue of Theorem~A for progressions to a prime
+modulus $q\ge x^{5/11+\eps}$.  The same substitution, with a hybrid
+(character) form of the Guth--Maynard estimate, should give
+$q\ge x^{3/7+\eps}$; see Remark~\ref{rem:ap}.  We have not checked this in
+detail.
+
+\section{The argument of Gorodetsky, Matom\"aki, Radziwi\l{}\l{} and Rodgers}
+
+For $z\ge 1$ that is not the square of an integer, $x\in[X,2X]$ and $H\le X$, put
+\begin{align*}
+  \Sigma_{\le z}(x)&:=\sum_{\substack{x<nd^2\le x+H\\ d^2\le z}}\mu(d)-H\sum_{d^2\le z}\frac{\mu(d)}{d^2},&
+  \Sigma_{> z}(x)&:=\sum_{\substack{x<nd^2\le x+H\\ d^2> z}}\mu(d)-H\sum_{z<d^2\le 2X}\frac{\mu(d)}{d^2}.
+\end{align*}
+(The requirement that $z$ not be a square only removes the ambiguity between
+$d^2<z$ and $d^2\le z$ in \cite{GMRR}.)  Since $\sum_{d}\mu(d)d^{-2}=6/\pi^2$, for
+every $x\in[X,2X]$
+\begin{equation}\label{eq:split}
+  \sum_{x<n\le x+H}\mu^2(n)-\frac{6}{\pi^2}H
+  =\Sigma_{\le z}(x)+\Sigma_{>z}(x)-H\sum_{d^2>2X}\frac{\mu(d)}{d^2},
+  \qquad \Bigl|H\sum_{d^2>2X}\frac{\mu(d)}{d^2}\Bigr|\le\frac{2H}{\sqrt{X}}.
+\end{equation}
+
+\begin{proposition}[{\cite[Proposition~1]{GMRR}}]\label{prop:small}
+Let $\eps\in(0,\frac1{100})$, $X\ge1$, $X^\eps\le H\le X^{2/3-\eps}$ and
+$H^{1+\eps}\le z\le\min\{X/H^{1/2+\eps},\,H^{1/2-\eps}X^{1/2}\}$.  Then, as
+$X\to\infty$,
+\[
+  \frac1X\int_X^{2X}|\Sigma_{\le z}(x)|^2\dd x=C\sqrt H+O\bigl(H^{1/2-\eps/10}\bigr).
+\]
+\end{proposition}
+
+\begin{proposition}[{\cite[Proposition~2]{GMRR}}]\label{prop:largeGMRR}
+Let $\eps\in(0,\frac1{100})$, $X\ge1$, $X^\eps\le H\le X^{4/7-\eps}$ and
+$z\ge H^{4/3+\eps}$.  Then
+$\frac1X\int_X^{2X}|\Sigma_{>z}(x)|^2\dd x\ll H^{1/2-\eps/8}$.
+\end{proposition}
+
+We do not change Proposition~\ref{prop:small}.  We replace
+Proposition~\ref{prop:largeGMRR} by Proposition~\ref{prop:large} below, keeping the first
+half of its proof, which we now recall.  Let $D\ge 1$ be a power of $2$ and put
+\[
+  \mathcal D:=\{d\in(D,2D]:\ d^2>z\},\qquad M(s)=M_D(s):=\sum_{d\in\mathcal D}\frac{\mu(d)}{d^{s}}.
+\]
+and
+\[
+  \Sigma^{(D)}_{>z}(x):=\sum_{\substack{x<nd^2\le x+H\\ d\in\mathcal D}}\mu(d)-H\sum_{d\in\mathcal D}\frac{\mu(d)}{d^2}.
+\]
+Let $\mathbf D$ be the set of the $O(\log X)$ powers of two $D$ with
+$\sqrt z/2<D\le\sqrt{3X}$.  Every $d$ with $z<d^2\le 3X$ lies in exactly one
+$\mathcal D$, $D\in\mathbf D$, and $nd^2\le x+H\le 3X$, so
+\begin{equation}\label{eq:dyadic}
+  \Sigma_{>z}(x)-\sum_{D\in\mathbf D}\Sigma^{(D)}_{>z}(x)=H\sum_{\substack{d^2>2X\\ d\in\bigcup_{D\in\mathbf D}\mathcal D}}\frac{\mu(d)}{d^2}=O\Bigl(\frac H{\sqrt X}\Bigr).
+\end{equation}
+The Dirichlet series of
+$n\mapsto\sum_{d\in\mathcal D,\,d^2\mid n}\mu(d)$ is $\zeta(s)M(2s)$.  Perron's
+formula, a shift of the contour to $\Re s=1/2$ (the pole at $s=1$ produces the
+subtracted term $H\sum_{d\in\mathcal D}\mu(d)d^{-2}$), Plancherel's theorem and
+a dyadic decomposition of the $t$-integral give the following.
+
+\begin{lemma}[{\cite[Section~5, up to display~(40)]{GMRR}}]\label{lem:reduction}
+Let $\eps\in(0,\frac1{100})$ and $X^\eps\le H\le X^{4/7-\eps}$.  Uniformly in $D$ and $z$,
+\[
+  \frac1X\int_X^{2X}\bigl|\Sigma^{(D)}_{>z}(x)\bigr|^2\dd x
+  \ll H\sup_{X/H<T<X^2}\frac1T\int_{|t|<T}\bigl|\zeta(\tfrac12+it)M_D(1+2it)\bigr|^2\dd t+1.
+\]
+\end{lemma}
+
+In \cite{GMRR} the integral is split according to the level sets
+\[
+  S(V):=\{t\in[-T,T]:\ V\le|M(1+2it)|<2V\},\qquad V=2^kD^{-1/2}\le 1,
+\]
+and Huxley's large value estimate \cite{Hu} gives
+\[
+  |S(V)|\ll\bigl(V^{-2}+T\min\{D^{-1}V^{-2},D^{-2}V^{-6}\}\bigr)(\log 2X)^6.
+\]
+When the term $V^{-2}$
+dominates, the Weyl bound gives the contribution $\ll HT^{-2/3+o(1)}$, which is
+acceptable when $H\le X^{4/7-\eps}$.  Otherwise Cauchy--Schwarz and the fourth
+moment give
+\[
+  \frac HT V^2\int_{S(V)}|\zeta(\tfrac12+it)|^2\dd t\ll HV^2\min\{D^{-1/2}V^{-1},\,D^{-1}V^{-3}\}(\log X)^5
+  \le HD^{-3/4}(\log X)^5,
+\]
+with equality of the two terms at $V=D^{-1/4}$; this requires $D\ge H^{2/3+}$,
+that is $z\ge H^{4/3+}$.
+
+\section{Inputs}
+
+\begin{lemma}[Guth--Maynard {\cite[Theorem~1.1]{GM}}]\label{lem:GM}
+Let $(b_n)$ be complex numbers with $|b_n|\le1$, and let $(t_r)_{r\le R}$ be
+$1$-separated points of $[0,T]$ with $\bigl|\sum_{n=N}^{2N}b_nn^{it_r}\bigr|\ge W$
+for all $r$.  Then for every $\eta>0$, if $T$ is large enough in terms of $\eta$,
+\[
+  R\le T^{\eta}\bigl(N^2W^{-2}+N^{18/5}W^{-4}+TN^{12/5}W^{-4}\bigr).
+\]
+\end{lemma}
+
+We use the theorem as stated in the arXiv version (v2, 7 April 2026) of
+\cite{GM}.  For comparison, the Mean Value Theorem and the
+Montgomery--Hal\'asz--Huxley estimate give
+$R\le T^{o(1)}(N^2W^{-2}+T\min\{NW^{-2},N^4W^{-6}\})$; at $W=N^{3/4}$ this is
+$N^{1/2}+TN^{-1/2}$, while Lemma~\ref{lem:GM} gives $N^{3/5}+TN^{-3/5}$.
+
+\begin{lemma}[Weyl bound, {\cite[Theorem~5.12]{Ti}}]\label{lem:weyl}
+$\zeta(\frac12+it)\ll(|t|+2)^{1/6}\log(|t|+2)$ for real $t$.
+\end{lemma}
+
+\begin{lemma}[Ingham's fourth moment {\cite{In}}]\label{lem:fourth}
+$\int_{-T}^{T}|\zeta(\frac12+it)|^4\dd t\ll T\log^4T$ for $T\ge2$.
+\end{lemma}
+
+\section{The large square divisors}
+
+\begin{proposition}\label{prop:large}
+Let $\eps\in(0,\frac1{100})$, $X\ge 2$, $X^\eps\le H\le X^{4/7-\eps}$ and
+$z\ge H^{5/4+\eps}$, where $z$ is not the square of an integer.  Then
+\[
+  \frac1X\int_X^{2X}|\Sigma_{>z}(x)|^2\dd x\ll_\eps H^{1/2-\eps/8}.
+\]
+\end{proposition}
+
+The only difference from Proposition~\ref{prop:largeGMRR} is the exponent $5/4$
+in place of $4/3$.
+
+\begin{lemma}\label{lem:levels}
+Let $D\ge4$ be a power of $2$, $T\ge 2$, $0<V\le1$, and let $S(V)$ be as above.  For
+every $\eta>0$, if $T$ is large enough in terms of $\eta$, the Lebesgue measure of
+$S(V)$ satisfies
+\[
+  |S(V)|\le 4(2T)^{\eta}\bigl(V^{-2}+D^{-2/5}V^{-4}+2TD^{-8/5}V^{-4}\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Let $\{t_r\}$ be a maximal $1$-separated subset of $S(V)$.  By maximality
+$S(V)\subset\bigcup_r(t_r-1,t_r+1)$, so $|S(V)|\le 2\#\{t_r\}$.  Put $N=D$ and
+$b_n=\mu(n)D/n$ for $n\in\mathcal D$, $b_n=0$ for the other $n\in[N,2N]$, so
+that $|b_n|\le1$ and $\sum_{n=N}^{2N}b_nn^{-2it}=D\,M(1+2it)$.  The points
+$2t_r$ with $t_r<0$ are $2$-separated in $[0,2T]$ after the change
+$t\mapsto-t$ and satisfy $|\sum_n b_nn^{i(2|t_r|)}|\ge DV$; the points $2t_r$ with
+$t_r\ge0$ satisfy the same with $b_n$ replaced by $\overline{b_n}$.  Lemma~\ref{lem:GM}
+with $T$ replaced by $2T$ and $W=DV$, applied to each of the two families, gives
+\[
+  \#\{t_r\}\le 2(2T)^{\eta}\bigl(D^2(DV)^{-2}+D^{18/5}(DV)^{-4}+2TD^{12/5}(DV)^{-4}\bigr),
+\]
+which is the claim.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:large}]
+By \eqref{eq:dyadic} and Cauchy--Schwarz over the $O(\log X)$ values
+$D\in\mathbf D$ (the right side of \eqref{eq:dyadic} has square
+$\ll H^2/X\le H^{1/2-1/7}$), it suffices to show that for each $D\in\mathbf D$ and
+each $T\in(X/H,X^2)$,
+\begin{equation}\label{eq:goal}
+  \frac HT\int_{|t|<T}|\zeta(\tfrac12+it)M(1+2it)|^2\dd t\ll_{\eps,\eta} X^{3\eta}H^{1/2-2\eps/5}
+\end{equation}
+for every small $\eta>0$; Lemma~\ref{lem:reduction} then gives
+$\frac1X\int_X^{2X}|\Sigma_{>z}|^2\ll X^{3\eta}(\log X)^2H^{1/2-2\eps/5}$, and since
+$X\le H^{1/\eps}$, the choice $\eta=\eps^2/20$ gives the bound
+$H^{1/2-\eps/4+o(1)}\ll H^{1/2-\eps/8}$.  We may assume $X$ large.
+
+We record the sizes of the parameters.  Since $D>\sqrt z/2\ge H^{5/8+\eps/2}/2$,
+$T>X/H$, $X^\eps\le H\le X^{4/7-\eps}$ and $H\le X$, we have
+\begin{equation}\label{eq:params}
+  D^{-4/5}\le 2H^{-\frac12-\frac{2\eps}5},\quad
+  H^{\frac76}X^{-\frac23}\le X^{-\frac{7\eps}6}\le H^{-\frac{7\eps}6},\quad
+  H^{\frac78}X^{-\frac12}\le X^{-\frac{7\eps}8}\le H^{-\frac{7\eps}8}.
+\end{equation}
+Also $|M(1+2it)|\le\sum_{D<d\le2D}d^{-1}<1$.
+
+\emph{Small values.}  On the set where $|M(1+2it)|<D^{-1/2}$ the integrand is at most
+$D^{-1}|\zeta(\frac12+it)|^2$, and Lemma~\ref{lem:fourth} with Cauchy--Schwarz gives the contribution
+$\ll HD^{-1}\log^2 T\ll H^{3/8}\log^2 X$.
+
+\emph{Level sets.}  It remains to bound, for each of the $O(\log X)$ values of
+$V=2^kD^{-1/2}\le1$,
+\[
+  B(V):=\frac HT(2V)^2\int_{S(V)}|\zeta(\tfrac12+it)|^2\dd t .
+\]
+By Lemma~\ref{lem:levels}, $|S(V)|\ll X^{2\eta}\max\{V^{-2},\,D^{-2/5}V^{-4},\,TD^{-8/5}V^{-4}\}$.
+We use two bounds for the $\zeta$-integral:
+\begin{align}
+  \int_{S(V)}|\zeta(\tfrac12+it)|^2\dd t&\le|S(V)|\max_{|t|\le T}|\zeta(\tfrac12+it)|^2\ll|S(V)|\,T^{1/3}\log^2T,\label{eq:z1}\\
+  \int_{S(V)}|\zeta(\tfrac12+it)|^2\dd t&\le|S(V)|^{1/2}\Bigl(\int_{-T}^T|\zeta(\tfrac12+it)|^4\dd t\Bigr)^{1/2}\ll|S(V)|^{1/2}\,T^{1/2}\log^2T,\label{eq:z2}
+\end{align}
+by Lemmas~\ref{lem:weyl} and~\ref{lem:fourth}.
+
+\emph{Case 1: the maximum is $V^{-2}$.}  By \eqref{eq:z1},
+$B(V)\ll X^{3\eta}HT^{-2/3}\le X^{3\eta}H^{5/3}X^{-2/3}=X^{3\eta}H^{1/2}\cdot H^{7/6}X^{-2/3}\le X^{3\eta}H^{1/2-7\eps/6}$.
+
+\emph{Case 2: the maximum is $D^{-2/5}V^{-4}$.}  By \eqref{eq:z2},
+\[
+  B(V)\ll X^{3\eta}\frac HT V^2D^{-1/5}V^{-2}T^{1/2}=X^{3\eta}HD^{-1/5}T^{-1/2}
+  \le X^{3\eta}H^{3/2}X^{-1/2}D^{-1/5}.
+\]
+Since $D^{-1/5}\le2H^{-1/8-\eps/10}$, this is
+$\ll X^{3\eta}H^{1/2}\cdot H^{7/8}X^{-1/2}\cdot H^{-\eps/10}\le X^{3\eta}H^{1/2-7\eps/8}$.
+
+\emph{Case 3: the maximum is $TD^{-8/5}V^{-4}$.}  By \eqref{eq:z2},
+\[
+  B(V)\ll X^{3\eta}\frac HTV^2\bigl(TD^{-8/5}V^{-4}\bigr)^{1/2}T^{1/2}=X^{3\eta}HD^{-4/5}\le 2X^{3\eta}H^{1/2-2\eps/5}.
+\]
+This is the step where \cite{GMRR} obtain $HD^{-3/4}$.  Note that $V$ cancels:
+the bound holds uniformly over the level sets, including the critical one
+$V\approx D^{-1/4}$.
+
+Summing over $V$ and adding the small values proves \eqref{eq:goal} (after
+renaming $\eta$ to absorb the logarithms).
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+If $H\le X^{6/11-\eps}$, Theorem~\ref{thm:main} follows from Theorem~A since
+$H^{1/2-\eps/16}\le H^{1/2-\eps/64}$.  Suppose that
+$X^{6/11-\eps}<H\le X^{4/7-\eps}$; in particular $X^{\eps}\le H$.  Put $\eps_1:=\eps/4$
+and choose $z\in[H^{5/4+\eps_1},2H^{5/4+\eps_1}]$ that is not the square of an integer.
+
+\emph{Proposition~\ref{prop:small} applies with $\eps_1$.}  We have $X^{\eps_1}\le H\le X^{2/3-\eps_1}$
+and $z\ge H^{1+\eps_1}$.  Next, $z\le X/H^{1/2+\eps_1}$ follows from
+$2H^{7/4+2\eps_1}\le X$, which holds for large $X$ because
+$(4/7-\eps)(7/4+\eps/2)=1-\tfrac{41}{28}\eps-\tfrac{\eps^2}{2}<1$.  Finally
+$z\le H^{1/2-\eps_1}X^{1/2}$ follows from $2H^{3/4+2\eps_1}\le X^{1/2}$, which holds
+because $\tfrac47(\tfrac34+\tfrac\eps2)<\tfrac12$.
+
+\emph{Proposition~\ref{prop:large} applies with $\eps_1$}, since $X^{\eps_1}\le H\le X^{4/7-\eps_1}$
+and $z\ge H^{5/4+\eps_1}$.
+
+Write $\|f\|^2:=\frac1X\int_X^{2X}|f(x)|^2\dd x$.  By \eqref{eq:split} and the two
+propositions,
+\begin{gather*}
+  \|\Sigma_{\le z}\|^2=C\sqrt H+O(H^{1/2-\eps/40}),\qquad
+  \|\Sigma_{>z}\|^2\ll H^{1/2-\eps/32},\\
+  \Bigl|H\sum_{d^2>2X}\frac{\mu(d)}{d^2}\Bigr|^2\le\frac{4H^2}{X}\le 4H^{1/2-1/7},
+\end{gather*}
+where the last step uses $H^{3/2}\le X^{6/7}$.  Writing $E:=\Sigma_{>z}-H\sum_{d^2>2X}\mu(d)d^{-2}$,
+we get $\|E\|^2\ll H^{1/2-\eps/32}$ and
+\[
+  \mathcal V(X,H)=\|\Sigma_{\le z}+E\|^2=\|\Sigma_{\le z}\|^2+O\bigl(\|\Sigma_{\le z}\|\,\|E\|+\|E\|^2\bigr)
+  =C\sqrt H+O\bigl(H^{1/2-\eps/64}\bigr).
+\]
+This proves Theorem~\ref{thm:main}. \qed
+
+\section{Why the method stops at $4/7$}\label{sec:limits}
+
+Write $H=X^h$, $D=X^\delta$, $T=X^\tau$ and $V=D^{-v}$ with $0\le v\le\frac12$.  In
+Lemma~\ref{lem:reduction} the weight of the frequencies $|t|\asymp T$ is
+$H\min\{HT/X,\,X/(HT)\}$ (this is what the proof in \cite{GMRR} gives before
+taking the supremum), so the critical height is $T=X/H$, i.e.\ $\tau=1-h$.
+Proposition~\ref{prop:small} allows $\delta$ as small as $\frac12-\frac h4$
+(that is, $z=X/H^{1/2}$), and no smaller.  We need, for all $\delta\ge\frac12-\frac h4$ and
+all $v$, that
+\[
+  H\cdot\frac1T\,V^2\int_{S(V)}|\zeta(\tfrac12+it)|^2\dd t\ll H^{1/2-c}.
+\]
+At $h=4/7$ and $\delta=\frac12-\frac h4=\frac5{14}$ (so $D=T^{5/6}$), each of the
+following is sharp:
+\begin{enumerate}
+\item the range $z\le X/H^{1/2}$ of Proposition~\ref{prop:small};
+\item Case 1 above, with the Weyl bound: $HT^{-2/3}\le H^{1/2}$ iff $h\le 4/7$;
+\item Case 2: $H^{3/2}X^{-1/2}D^{-1/5}\le H^{1/2}$ at $D=H^{5/8}$ iff $h\le4/7$;
+\item Case 3: $HD^{-4/5}\le H^{1/2}$ iff $D\ge H^{5/8}$, i.e.\ $z\ge H^{5/4}$, and
+  $H^{5/4}\le X/H^{1/2}$ iff $h\le4/7$.
+\end{enumerate}
+Item (2) can be relaxed: Bourgain's bound
+$\zeta(\frac12+it)\ll|t|^{13/84+o(1)}$ \cite{Bo} moves it to $h\le29/50$.  For
+$h>4/7$ the length $D=X^{1/2-h/4}$ exceeds $T^{5/6}$, so the dominant term of
+\cite[Theorem~1.1]{GM} there is $N^{18/5}W^{-4}$, that is item (3), and for
+$T^{5/6}\le N\le T$ Guth and Maynard's estimate for long polynomials
+\cite[Proposition~12.1]{GM} is a complete replacement for Theorem~1.1 (for
+$\sigma\ge7/10$).  This replacement is itself blocked at $4/7$, at the same place as
+(1) and (4), for the following reason.  At the level
+$\sigma=3/4$ (that is, $v=1/4$, $W=N^{3/4}$) and $N=D\in[T^{5/6},T]$, every large value
+estimate we checked (the Mean Value Theorem, Huxley, Jutila's estimate with $k=3$
+\cite{Ju}, \cite[Theorem~1.1 and Proposition~12.1]{GM}) gives at best $R\lesssim T^{1/2}$
+(we have not gone through the full compilation of large value estimates in
+\cite{TTY});
+this is attained by \cite[Proposition~12.1]{GM}, whose term $T^{1/2}N^{3-4\sigma}$
+equals $T^{1/2}$ at $\sigma=3/4$.  (For $4/7\le h\le2/3$ the smallest length allowed by
+Proposition~\ref{prop:small}, $D=X^{1/2-h/4}$, does lie in $[T^{5/6},T]$.)  For a
+set of $R=T^{1/2}$ unit intervals the fourth moment and
+Heath-Brown's twelfth moment \cite{HB} give the same bound $T^{3/4}$ for
+$\int_S|\zeta(\frac12+it)|^2$, and the pointwise bound is worse.  The level
+$\sigma=3/4$ therefore contributes $HD^{-1/2}T^{-1/4}$, which is
+$\le H^{1/2}$ only if $D\ge H^{3/2}X^{-1/2}$, i.e.\ $\delta\ge\frac{3h-1}2$.  Since
+$\frac{3h-1}2\le\frac12-\frac h4$ if and only if $h\le\frac47$, for every $h>4/7$ the
+large-$d$ estimate, with these inputs, requires $z$ beyond the range of
+Proposition~\ref{prop:small}.  This argument treats $M$ as a Dirichlet polynomial
+with arbitrary coefficients bounded by $1$ and uses only the size of $S(V)$ and
+moments of $\zeta$; it does not rule out gains from the arithmetic structure of
+$\mu$ (for instance via Heath-Brown's identity, as discussed in
+\cite[Section~2]{GMRR}).
+
+We confirmed this numerically by optimising over all $(\delta,v)$ with the full
+set of inputs (Mean Value Theorem, Huxley, \cite[Theorem~1.1 and
+Proposition~12.1]{GM} with the infimum over $k$, Jutila with $k=3$, Bourgain's
+exponent, and the fourth and twelfth moments), at the critical height $T=X/H$;
+larger $T$ do not change the values.  The smallest admissible $\delta$ (accurate
+to about $10^{-4}$, the grid resolution) is shown below; it exceeds
+$\frac12-\frac h4$ for every $h>4/7$ we tested.  For $h\ge0.585$ no $\delta$ works,
+because Case~1 fails for every $D$ once $h>29/50$, even with Bourgain's bound.
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+$h$ & $\frac12-\frac h4$ (Prop.~\ref{prop:small}) & smallest admissible $\delta$ & $\frac{3h-1}2$\\
+\midrule
+$0.5715$ & $0.35713$ & $0.35726$ & $0.35725$\\
+$0.5750$ & $0.35625$ & $0.36346$ & $0.36250$\\
+$0.5800$ & $0.35500$ & $0.37172$ & $0.37000$\\
+$0.5850$ & $0.35375$ & none & $0.37750$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Consequently, the next step is an extension of Proposition~\ref{prop:small} to
+$z$ somewhat larger than $X/H^{1/2}$.  In \cite{GMRR} this bound arises in the
+off-diagonal terms of the variance of the small-$d$ part, after the
+Fourier expansion of the sawtooth function, where pairs $n_1d_2^2\ne n_2d_1^2$
+are counted with a lemma on quadratic irrationals.  Under the Lindel\"of hypothesis
+the large-$d$ part only requires $z\ge H^{1+\eps}$, and then $H\le X^{2/3}$ is the
+limit of Proposition~\ref{prop:small} itself.  With Proposition~\ref{prop:small}
+extended, Bourgain's exponent would allow up to $h<29/50$ in the present
+argument.
+
+\begin{remark}[Arithmetic progressions]\label{rem:ap}
+\cite[Theorem~2]{GMRR} gives the analogue of Theorem~A for progressions modulo a
+prime $q\ge x^{5/11+\eps}$.  It is deduced from \cite[Proposition~3]{GMRR}, valid
+for $z\le x^{-\eps}\sqrt{qx}$, and \cite[Proposition~4]{GMRR}, which requires
+$z\ge(x/q)^{4/3+\eps}$ and is proved with the hybrid form of Huxley's estimate,
+the hybrid fourth moment, and the Petrow--Young Weyl bound for Dirichlet
+$L$-functions \cite{PY}; Proposition~4 already carries the assumption
+$q\ge x^{3/7+\eps}$, the analogue of $H\le X^{4/7-\eps}$.  A hybrid estimate of the form
+$R\lesssim N^2W^{-2}+N^{18/5}W^{-4}+qTN^{12/5}W^{-4}$ would give, by the same
+computation, $z\ge(x/q)^{5/4+\eps}$ and hence $q\ge x^{3/7+\eps}$ (since
+$(x/q)^{5/4}\le\sqrt{qx}$ if and only if $q\ge x^{3/7}$).  Chen \cite[Theorem~1.3]{Ch} proves a
+hybrid Guth--Maynard estimate that agrees with this shape at $N=(qT)^{5/6}$, which is
+the critical length when $q=x^{3/7}$; a check of the exponents with Chen's bounds
+for $N\in[(qT)^{3/4},(qT)^{5/6}]$ and $N\ge(qT)^{5/6}$, at $T=x^{o(1)}$, again
+gives $q\ge x^{3/7}$.  We have not verified the reduction in
+\cite[Proposition~4]{GMRR} in detail, and \cite{Ch} is a recent preprint.
+\end{remark}
+
+\section*{Provenance}
+This note was produced with Claude (Anthropic) at the request of Siddharth Iyer,
+as part of a search for problems from the work of Matom\"aki.  The literature
+search behind it (arXiv and the web, October 2026) found no earlier claim of the
+range $H\le X^{4/7-\eps}$, but it was not exhaustive.  The argument has not been
+refereed.
+
+\begin{thebibliography}{GMaR}
+\bibitem[Bo]{Bo} J.~Bourgain, \emph{Decoupling, exponential sums and the Riemann
+  zeta function}, J. Amer. Math. Soc. \textbf{30} (2017), 205--224.
+\bibitem[Ch]{Ch} B.~Chen, \emph{Large value estimates for Dirichlet polynomials,
+  and the density of zeros of Dirichlet's $L$-functions}, arXiv:2507.08296v1
+  (July 2025).  (Later versions of this arXiv number have further authors, a
+  different title and different theorem numbering.)
+\bibitem[GM]{GM} L.~Guth and J.~Maynard, \emph{New large value estimates for
+  Dirichlet polynomials}, Ann. of Math. \textbf{203} (2026), 623--675;
+  arXiv:2405.20552v2.
+\bibitem[GMRR]{GMRR} O.~Gorodetsky, K.~Matom\"aki, M.~Radziwi\l{}\l{} and
+  B.~Rodgers, \emph{On the variance of squarefree integers in short intervals and
+  arithmetic progressions}, Geom. Funct. Anal. \textbf{31} (2021), 111--149;
+  arXiv:2006.04060.
+\bibitem[GMaR]{GMaR} O.~Gorodetsky, A.~P.~Mangerel and B.~Rodgers,
+  \emph{Squarefrees are Gaussian in short intervals}, arXiv:2112.12234.
+\bibitem[Ha]{Ha} R.~R.~Hall, \emph{Squarefree numbers on short intervals},
+  Mathematika \textbf{29} (1982), 7--17.
+\bibitem[HB]{HB} D.~R.~Heath-Brown, \emph{The twelfth power moment of the
+  Riemann zeta-function}, Quart. J. Math. Oxford (2) \textbf{29} (1978), 443--462.
+\bibitem[Hu]{Hu} M.~N.~Huxley, \emph{On the difference between consecutive
+  primes}, Invent. Math. \textbf{15} (1972), 164--170.
+\bibitem[In]{In} A.~E.~Ingham, \emph{Mean-value theorems in the theory of the
+  Riemann zeta-function}, Proc. London Math. Soc. (2) \textbf{27} (1926), 273--300.
+\bibitem[Ju]{Ju} M.~Jutila, \emph{Zero-density estimates for $L$-functions},
+  Acta Arith. \textbf{32} (1977), 55--62.
+\bibitem[PY]{PY} I.~Petrow and M.~P.~Young, \emph{A generalized cubic moment and
+  the Petersson formula for newforms}, Ann. of Math. \textbf{191} (2020), 437--486.
+\bibitem[TTY]{TTY} T.~Tao, T.~Trudgian and A.~Yang, \emph{New exponent pairs,
+  zero density estimates, and zero additive energy estimates: a systematic
+  approach}, arXiv:2501.16779.
+\bibitem[Ti]{Ti} E.~C.~Titchmarsh, \emph{The Theory of the Riemann
+  Zeta-Function}, 2nd ed., revised by D.~R.~Heath-Brown, Oxford, 1986.
+\end{thebibliography}
+
+\end{document}
